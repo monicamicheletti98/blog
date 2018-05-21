@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Blog - Crea Post</title>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/mike.css" rel="stylesheet">
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+    </head>
+    <body ng-controller="dbController">
+
+        <nav class="navbar navbar-fixed-top navbar-inverse sticky">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img id="logo" src="img/games-icon.png">
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html"><span class="glyphicon glyphicon-home"></span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorie <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="x in categoria">
+                                    <a href="categoria.html">{{x.nome}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form>
+                                <button href="#" type="button" class="btn btn-danger" id="loginBtn">Esci</button>
+                            </form>
+                        </li>
+                        <li><a href="register.html">Registrati</a></li>
+                    </ul>
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </nav><!-- /.navbar -->
+
+        <div class="container" style="margin-top: 70px">
+
+            <div class="row">
+                <hr/>
+                <h1 class="text-center">Nuovo Post</h1>
+                <hr/>
+            </div>
+
+            <form class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>Titolo Post</label>
+                    <input type="text" class="form-control" placeholder="Titolo">
+                </div>
+                <div class="form-group">
+                    <label>Scrivi Testo</label>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Carica Immagine</label>
+                    <input type="file" id="caricaFile">
+                </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#anteprima">Anteprima</button>
+                <button type="submit" class="btn btn-success">Pubblica</button>
+            </form>
+
+
+
+            <div class="modal fade" id="anteprima" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Anteprima Post</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-default">
+                                <h5 class="text-center">Scegli Categoria:</h5>
+                                <select class="form-control">
+                                    <option>Sport</option>
+                                    <option>Cucina</option>
+                                    <option>Moda</option>
+                                    <option>Flora e Fauna</option>
+                                </select>
+
+                                <div class="panel panel-heading">
+                                    <h4>Titolo Post</h4>
+                                </div>
+                                <div class="panel panel-body">
+                                    <div class="col-md-2"><img class="img-responsive" src="http://via.placeholder.com/250x200"/></div>
+                                    <p class="col-md-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id justo in felis cursus accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam scelerisque cursus interdum. Nulla scelerisque imperdiet dui ac convallis. Nulla sollicitudin viverra purus, et semper ligula pharetra et. Nullam sagittis, nulla eu pretium interdum, diam velit vehicula diam, eget molestie arcu elit eu magna. In molestie vel ipsum a vehicula. Nulla varius vehicula mauris in sodales. Quisque ultrices dui libero, eget feugiat ex ultrices non. Nam accumsan quis sapien vel cursus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce in volutpat turpis. Nullam dapibus dapibus pulvinar. Sed non ligula rhoncus, porta dui ut, aliquam diam.</p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="app/controller/db_controller.js"></script>
+    </body>
+</html>

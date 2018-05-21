@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Admin Panel</title>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+    </head>
+    <body>
+        <nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Il mio Blog</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Blog</a></li>
+                        <li><a href="#about">Conosciamoci</a></li>
+                        <li><a href="#contact">Contatti</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorie <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sport</a></li>
+                                <li><a href="#">Moda</a></li>
+                                <li><a href="#">Flora e Fauna</a></li>
+                                <li><a href="#">Cucina</a></li>
+                            </ul>
+                        </li>  
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><p class="navbar-text">Hai già un account?</p></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                            <ul id="login-dp" class="dropdown-menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Login tramite
+                                            <div class="social-buttons">
+                                                <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                                <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                            </div>
+                                            oppure
+                                            <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputEmail2">Indirizzo Email</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Indirizzo E-mail" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                                    <div class="help-block text-right"><a href="">Password dimenticata ?</a></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary btn-block">Accedi</button>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> Ricordami
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="bottom text-center">
+                                            Nuovo da queste parti ? <a href="signup.html"><b>Iscriviti</b></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <p class="navbar-right navbar-text">Bentornato, Utente!</p>
+                    </ul>
+
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </nav><!-- /.navbar -->
+        <div class="container-fluid col-md-10 col-md-offset-1">
+            <div class="panel panel-default  pushed-down">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Gestione Categorie</div>
+
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th><button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mdlCategoria">Aggiungi Categoria</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sport</td>
+                            <td><button type="button" class="btn btn-danger pull-right">Fai qualcosa a sta categoria, ancora non so cosa</button></td>
+                        </tr>
+                        <tr>
+                            <td>Cucina</td>
+                            <td><button type="button" class="btn btn-danger pull-right">Fai qualcosa a sta categoria, ancora non so cosa</button></td>
+                        </tr>
+                        <tr>
+                            <td>Flora e Fauna</td>
+                            <td><button type="button" class="btn btn-danger pull-right">Fai qualcosa a sta categoria, ancora non so cosa</button></td>
+                        </tr>
+                        <tr>
+                            <td>Moda</td>
+                            <td><button type="button" class="btn btn-danger pull-right">Fai qualcosa a sta categoria, ancora non so cosa</button></td>
+                        </tr>
+                    </tbody>    
+                </table>
+            </div>
+        </div>
+        <div class="container-fluid col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <label>Gestione Tag</label>
+                    <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mdlTag">Aggiungi Tag</button>
+                </div>
+
+                <div class="panel-body">
+                    <p>Qui ci son tutti i tag che nessuno usa, mica sono Twitter.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <label>Approva Post</label>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome Utente</th>
+                                <th>Data Richiesta</th>
+                                <th>Titolo Post</th>
+                                <th>Categoria</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pippo Dalbucodelculo</td>
+                                <td>15/05/2018</td>
+                                <td>Non so come sia umanamente possibile</td>
+                                <td>Moda</td>
+                                <td><button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#mdlAnteprima">Anteprima</button></td>
+                            </tr>
+                            <tr>
+                                <td>Naso Dalpippo</td>
+                                <td>05/05/2018</td>
+                                <td>Qualquadra non cosa</td>
+                                <td>Flora e Fauna</td>
+                                <td><button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#mdlAnteprima">Anteprima</button></td>
+                            </tr>
+                        </tbody>    
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal fade" id="mdlAnteprima" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Trombino le squillo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Posto Dalnaso</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-2">
+                                        <img class="img-responsive" src="http://via.placeholder.com/300x200">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p>Lorem ipsum dolor sit amet, eruditi maiestatis qui an. Eu eum saepe impetus albucius. Persecuti conceptam concludaturque eos no, mei affert tation populo at. Omnes officiis temporibus eum eu, timeam inermis ponderum ea mel. Case diceret ei pro, alia meis iracundia vix in. His primis adipiscing et.
+
+                                            Et everti facilis qui. Vix fabellas invenire ut, vim legere detracto mediocritatem in. Duo et eirmod debitis maiorum. Nulla platonem no mei, ius ea tamquam maluisset. Ludus tincidunt appellantur ut cum, an graecis fabellas vim, vix at dolore patrioque gubergren.
+
+                                            Eos ea ullum erant probatus, mei ne erat placerat mnesarchum, sit aeterno nostrud deseruisse in. In modo eros mel, sit ex doming omnesque gloriatur. No mucius apeirian quo. Te quodsi senserit constituto vix. Autem movet placerat id his, sed eu vitae graeco omittantur, prompta delicatissimi vel ad. Ei singulis atomorum assueverit ius.
+
+                                            Cu posse augue mea, utinam aperiam recteque eam id, in putent aperiam ocurreret usu. Nec doctus feugiat probatus te. An mei quot erant. Erat prompta omittantur eum cu, noster integre te sit. Te feugait voluptua expetenda has, an vim tale honestatis.
+
+                                            Suas debitis principes ut vel, quo iriure postulant contentiones ut, alia officiis an quo. Autem efficiantur ei vis, sit ne solet integre pertinacia, nam veniam theophrastus ut. Vis et ridens nonumes scribentur, ei quo oporteat tacimates. Atomorum honestatis ex cum. Modo patrioque at duo, falli nulla aliquid eu eum. Vim ex apeirian elaboraret, an audiam nusquam usu, sapientem liberavisse signiferumque et his.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Brucia al rogo</button>
+                            <button type="button" class="btn btn-primary">Approva e Pubblica</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="mdlTag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Trombino le squillo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Tag dalnaso</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-10">
+                                        <p>Taggami il naso</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Brucia al rogo</button>
+                            <button type="button" class="btn btn-primary">Approva e Pubblica</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="mdlCategoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Trombino le squillo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Categoria dalnaso</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-10">
+                                        <p>Categorizzami il naso</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Brucia al rogo</button>
+                            <button type="button" class="btn btn-primary">Approva e Pubblica</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="sparta.png">
+
+        <title>Pippo Dalnaso in città</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/offcanvas.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="js/ie-emulation-modes-warning.js"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->    
+    </head>
+    <body>
+        <div class="container - fluid">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form action="" method="post" id="fileForm" role="form">
+                        <!--                        <fieldset><legend class="text-center">Inserire dati validi al fine della registrazione <span class="req"><small> campo obbligatorio *</small></span></legend>-->
+                        <fieldset>
+
+                            <div class="form-group">
+                                <legend class="text-center">Inserire dati validi al fine della registrazione <br><span class="req"><small> campo obbligatorio *</small></span></legend>
+                                <label for="phonenumber"><span class="req">* </span> Numero di telefono: </label>
+                                <input required type="text" name="phonenumber" id="phone" class="form-control phone" maxlength="28" onkeyup="validatephone(this);" placeholder="Non utilizzato a scopi di marketing"/> 
+                            </div>
+
+                            <div class="form-group"> 	 
+                                <label for="firstname"><span class="req">* </span> Nome: </label>
+                                <input class="form-control" type="text" name="firstname" placeholder="Nome" id = "txt" onkeyup = "Validate(this)" required /> 
+                                <div id="errFirst"></div>    
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastname"><span class="req">* </span> Cognome: </label> 
+                                <input class="form-control" type="text" name="lastname" id = "txt" onkeyup = "Validate(this)" placeholder="Cognome" required />  
+                                <div id="errLast"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email"><span class="req">* </span> Indirizzo Email: </label> 
+                                <input class="form-control" required type="text" name="email" id = "email"  onchange="email_validate(this.value);" placeholder="Indirizzo Email" />   
+                                <div class="status" id="status"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username"><span class="req">* </span> Username:  <small>Questo sarà il tuo username per il login</small> </label> 
+                                <input class="form-control" type="text" name="username" id = "txt" onkeyup = "Validate(this)" placeholder="Minimo 6 caratteri" required />  
+                                <div id="errLast"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password"><span class="req">* </span> Password: </label>
+                                <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="Inserisci Password" id="pass1" />
+
+                                <label for="password"><span class="req">* </span> Conferma Password: </label>
+                                <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="Ripeti la password"  id="pass2" onkeyup="checkPass(); return false;" />
+                                <span id="confirmMessage" class="confirmMessage"></span>
+                            </div>
+
+                            <div class="form-group">
+
+                                <?php //$date_entered = date('m/d/Y H:i:s'); ?>
+                                <input type="hidden" value="<?php //echo $date_entered; ?>" name="dateregistered">
+                                <input type="hidden" value="0" name="activate" />
+                                <hr>
+
+                                <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Indica la tua volontà di accettare i nostri Termini' : '');" id="field_terms">   <label for="terms">Accetto i <a href="terms.php" title="Puoi leggere i nostri termini e condizioni cliccando su questo link">Termini e Condizioni</a> per la Registrazione.</label><span class="req"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="btn btn-success" type="submit" name="submit_reg" value="Registrati">
+                            </div>
+                            <h5>Riceverai una mail di conferma per il processo di validazione email. </h5>
+                            <h5>Assicurati di controllare anche la cartella SPAM. </h5>
+
+
+                        </fieldset>
+                    </form><!-- ends register form -->
+
+                    <script type="text/javascript">
+                        document.getElementById("field_terms").setCustomValidity("Accettare i Termini e Condizioni");
+                    </script>
+                </div><!-- ends col-6 -->
+
+
+
+            </div>
+        </div>
+    </body>
+</html>
