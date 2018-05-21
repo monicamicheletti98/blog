@@ -25,7 +25,7 @@ import org.forit.blog.exception.BlogException;
  *
  * @author UTENTE
  */
-@Path("/Categoria")
+@Path("/categoria")
 public class CategoriaRest implements Serializable {
 
 

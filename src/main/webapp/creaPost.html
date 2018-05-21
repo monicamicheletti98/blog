@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Blog - Crea Post</title>
+        <title>Crea Post</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/mike.css" rel="stylesheet">
-
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,98 +19,136 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
     </head>
-    <body ng-controller="dbController">
 
-        <nav class="navbar navbar-fixed-top navbar-inverse sticky">
+    <body ng-controller="dbController">
+        <nav class="navbar navbar-fixed-top navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                            aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <img id="logo" src="img/games-icon.png">
+                    <img id="logo" src="img/sparta.png">
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html"><span class="glyphicon glyphicon-home"></span></a></li>
+                        <li class="active">
+                            <a href="index.html">
+                                <span class="glyphicon glyphicon-home"></span>
+                            </a>
+                        </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorie <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
+                            <a href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categorie
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li ng-repeat="x in categoria">
                                     <a href="categoria.html">{{x.nome}}</a>
                                 </li>
+
                             </ul>
                         </li>
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Ricerca dettagliata">
+                            </div>
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </form>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+
+                    <p class="navbar-text navbar-right">Bentornato Admin Brotha!</p>
+                    <ul class="navbar-nav navbar-right">
                         <li>
                             <form>
-                                <button href="#" type="button" class="btn btn-danger" id="loginBtn">Esci</button>
+                                <button type="button" id="login" class="btn btn-danger">Esci</button>
                             </form>
                         </li>
-                        <li><a href="register.html">Registrati</a></li>
                     </ul>
-                </div><!-- /.nav-collapse -->
-            </div><!-- /.container -->
-        </nav><!-- /.navbar -->
 
-        <div class="container" style="margin-top: 70px">
 
-            <div class="row">
-                <hr/>
-                <h1 class="text-center">Nuovo Post</h1>
-                <hr/>
+                </div>
+                <!-- /.nav-collapse -->
             </div>
-
+            <!-- /.container -->
+        </nav>
+        <!-- /.navbar -->
+        <div class="container">
+            <div class="row">
+                <hr>
+                <h1 class="text-center" style="margin-top: 50px">Nuovo Post</h1>
+                <hr>
+            </div>
             <form class="col-md-8 col-md-offset-2">
                 <div class="form-group">
+                    <select class="form-control">
+                        <option ng-repeat="cat in categoria">{{cat.nome}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>Titolo Post</label>
-                    <input type="text" class="form-control" placeholder="Titolo">
+                    <input type="text" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Scrivi Testo</label>
                     <textarea class="form-control" rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Carica Immagine</label>
+                    <label>File input</label>
                     <input type="file" id="caricaFile">
+
                 </div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#anteprima">Anteprima</button>
+
+                <button type="submit" class="btn btn-default" data-toggle="modal" data-target="#anteprima">Anteprima</button>
                 <button type="submit" class="btn btn-success">Pubblica</button>
             </form>
-
-
-
+            <!-- Modal -->
             <div class="modal fade" id="anteprima" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             <h4 class="modal-title" id="myModalLabel">Anteprima Post</h4>
                         </div>
                         <div class="modal-body">
                             <div class="panel panel-default">
-                                <h5 class="text-center">Scegli Categoria:</h5>
-                                <select class="form-control">
-                                    <option>Sport</option>
-                                    <option>Cucina</option>
-                                    <option>Moda</option>
-                                    <option>Flora e Fauna</option>
-                                </select>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Titolo Post</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-2">
+                                        <img class="img-responsive" src="http://via.placeholder.com/250x200" alt="anteprima" />
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p>Lorem ipsum dolor sit amet, eruditi maiestatis qui an. Eu eum saepe impetus albucius. Persecuti conceptam concludaturque
+                                            eos no, mei affert tation populo at. Omnes officiis temporibus eum eu, timeam inermis ponderum ea mel. Case diceret
+                                            ei pro, alia meis iracundia vix in. His primis adipiscing et. Et everti facilis qui. Vix fabellas invenire ut,
+                                            vim legere detracto mediocritatem in. Duo et eirmod debitis maiorum. Nulla platonem no mei, ius ea tamquam maluisset.
+                                            Ludus tincidunt appellantur ut cum, an graecis fabellas vim, vix at dolore patrioque gubergren. Eos ea ullum erant
+                                            probatus, mei ne erat placerat mnesarchum, sit aeterno nostrud deseruisse in. In modo eros mel, sit ex doming omnesque
+                                            gloriatur. No mucius apeirian quo. Te quodsi senserit constituto vix. Autem movet placerat id his, sed eu vitae
+                                            graeco omittantur, prompta delicatissimi vel ad. Ei singulis atomorum assueverit ius. Cu posse augue mea, utinam
+                                            aperiam recteque eam id, in putent aperiam ocurreret usu. Nec doctus feugiat probatus te. An mei quot erant. Erat
+                                            prompta omittantur eum cu, noster integre te sit. Te feugait voluptua expetenda has, an vim tale honestatis. Suas
+                                            debitis principes ut vel, quo iriure postulant contentiones ut, alia officiis an quo. Autem efficiantur ei vis,
+                                            sit ne solet integre pertinacia, nam veniam theophrastus ut. Vis et ridens nonumes scribentur, ei quo oporteat
+                                            tacimates. Atomorum honestatis ex cum. Modo patrioque at duo, falli nulla aliquid eu eum. Vim ex apeirian elaboraret,
+                                            an audiam nusquam usu, sapientem liberavisse signiferumque et his.</p>
+                                    </div>
+                                </div>
 
-                                <div class="panel panel-heading">
-                                    <h4>Titolo Post</h4>
-                                </div>
-                                <div class="panel panel-body">
-                                    <div class="col-md-2"><img class="img-responsive" src="http://via.placeholder.com/250x200"/></div>
-                                    <p class="col-md-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id justo in felis cursus accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam scelerisque cursus interdum. Nulla scelerisque imperdiet dui ac convallis. Nulla sollicitudin viverra purus, et semper ligula pharetra et. Nullam sagittis, nulla eu pretium interdum, diam velit vehicula diam, eget molestie arcu elit eu magna. In molestie vel ipsum a vehicula. Nulla varius vehicula mauris in sodales. Quisque ultrices dui libero, eget feugiat ex ultrices non. Nam accumsan quis sapien vel cursus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce in volutpat turpis. Nullam dapibus dapibus pulvinar. Sed non ligula rhoncus, porta dui ut, aliquam diam.</p>
-                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -122,6 +160,7 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="app/controller/db_controller.js"></script>
+        <script src="app/controller/db_controller.js"></script>
     </body>
+
 </html>
