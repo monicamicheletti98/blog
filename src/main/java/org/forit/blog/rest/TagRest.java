@@ -6,6 +6,7 @@
 package org.forit.blog.rest;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,9 +32,9 @@ public class TagRest implements Serializable{
     @Path("/")
     @GET()
     @Produces("application/json")
-    public Map<Long, String> getTag() {
+    public List<tagDTO> getTag() {
         tagDAO TagDAO = new tagDAO();
-        return TagDAO.getListaTag();
+        return TagDAO.getTagsList();
     }
 
     @Path("/{id}")

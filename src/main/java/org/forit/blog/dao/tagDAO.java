@@ -18,39 +18,38 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import org.forit.blog.dto.UserDTO;
+import org.forit.blog.dto.tagDTO;
 import org.forit.blog.entity.TagEntity;
+import org.forit.blog.entity.UserEntity;
 import org.forit.blog.exception.TagException;
-
 
 /**
  *
  * @author UTENTE
  */
 public class tagDAO {
-    
- public final static String DB_URL = "jdbc:mysql://localhost:3306/blog?useSSL=false&user=forit&password=12345";
-  public static final String UPDATE_TAG
+
+    public final static String DB_URL = "jdbc:mysql://localhost:3306/blog?useSSL=false&user=forit&password=12345";
+    public static final String UPDATE_TAG
             = "UPDATE TAG"
             + "SET NOME = ? "
             + "WHERE ID = ?";
 
-     public Map<Long, String> getListaTag() {
+    public List<tagDTO> getTagsList() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("blog_pu");
         EntityManager em = emf.createEntityManager();
 
-        TypedQuery<TagEntity> query = em.createNamedQuery("tag.selectAll",TagEntity.class);
+        TypedQuery<TagEntity> query = em.createNamedQuery("tag.selectAll", TagEntity.class);
         List<TagEntity> list = query.getResultList();
-        Map<Long, String> map = list.stream().
-                collect(Collectors.toMap(
-                        nazione -> nazione.getID(),
-                        nazione -> nazione.getNome(),
-                        (u, v) -> u,
-                        LinkedHashMap::new));
-
+        List<tagDTO> tags = list.stream().map(entity -> {
+            tagDTO tag = new tagDTO(entity.getID(), entity.getNome());
+            return tag;
+        }).collect(Collectors.toList());
         em.close();
         emf.close();
 
-        return map;
+        return tags;
     }
 
     public String getTag(long ID) {
@@ -94,7 +93,7 @@ public class tagDAO {
                 PreparedStatement ps = conn.prepareStatement(UPDATE_TAG);) {
 
             ps.setString(1, nome);
-            
+
             ps.setLong(2, id);
             ps.executeUpdate();
 
@@ -103,6 +102,7 @@ public class tagDAO {
             throw new TagException(ex);
         }
     }
+
     public void deleteTag(long ID) throws TagException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("blog_pu");
         EntityManager em = emf.createEntityManager();
