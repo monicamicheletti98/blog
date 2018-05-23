@@ -2,14 +2,14 @@ package org.forit.blog.dto;
 
 import java.util.Objects;
 
-public class TagDTO1 {
+public class TagDTO {
     long id;
     String nome;
 
-    public TagDTO1() {
+    public TagDTO() {
     }
 
-    public TagDTO1(long id, String nome) {
+    public TagDTO(long id, String nome) {
         this.id = id;
         this.nome = nome;
     }
@@ -49,7 +49,7 @@ public class TagDTO1 {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TagDTO1 other = (TagDTO1) obj;
+        final TagDTO other = (TagDTO) obj;
         if (this.id != other.id) {
             return false;
         }

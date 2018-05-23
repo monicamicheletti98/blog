@@ -9,7 +9,7 @@ import org.forit.blog.entity.EntityManagerProvider;
 import org.forit.blog.entity.QTagEntity;
 import org.forit.blog.entity.TagEntity;
 
-public class TagDAO1 {
+public class TagDAO {
 
     public TagDTO getTag(long id) {
         EntityManager em = EntityManagerProvider.getEntityManager();
