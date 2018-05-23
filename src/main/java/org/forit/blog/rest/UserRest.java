@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import org.forit.blog.dao.UserDAO;
 import org.forit.blog.dto.UserDTO;
 
-@Path("/accounts")
+@Path("/user")
 public class UserRest {
     @Path("/{id}")
     @GET

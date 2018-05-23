@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import org.forit.blog.dao.TagDAO;
 import org.forit.blog.dto.TagDTO;
 
-@Path("/tags")
+@Path("/tag")
 public class TagRest {
     
     @Path("/")

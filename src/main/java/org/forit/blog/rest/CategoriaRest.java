@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import org.forit.blog.dao.CategoriaDAO;
 import org.forit.blog.dto.CategoriaDTO;
 
-@Path("/categorie")
+@Path("/categoria")
 public class CategoriaRest {
     
     @Path("/{id}")
