@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.forit.blog.entity;
 
 import java.io.Serializable;
@@ -17,75 +12,74 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author UTENTE
- */
 @Entity
 @Table(name = "post")
-@NamedQueries({
-    @NamedQuery(
-            name = "post.selectAll",
-            query = "SELECT p FROM PostEntity p ORDER BY p.titolo"
-    )
-})
 public class PostEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(table = "post",name = "ID", unique = true, nullable = false)
-    private long ID=-1 ;
+    @Column(name = "ID", unique = true, nullable = false)
+    private long id;
 
-   
-    @Column(table = "post", name = "id_categoria", unique = false, nullable = false)
-    private long IdCategoria;
-   
-     @Column(table = "post",name = "titolo", unique = false, nullable = false)
+    @Column(name = "ID_CATEGORIA", unique = false, nullable = false)
+    private long idCategoria;
+
+    @Column(name = "TITOLO", unique = false, nullable = false)
     private String titolo;
-      
-    @Column(table = "post",name = "descrizione", unique = false, nullable = false)
+
+    @Column(name = "DESCRIZIONE", unique = false, nullable = true)
     private String descrizione;
-    
-    @Column(table = "post", name = "data", unique = false, nullable = false)
+
+    @Column(name = "ID_AUTORE", unique = false, nullable = false)
+    private long idAutore;
+
+    @Column(name = "DATA", unique = false, nullable = false)
     private LocalDate data;
-    
-     @Column(table = "post", name = "visibile", unique = false, nullable = false)
-    private boolean visibile;
-     
-      @Column(table = "post", name = "visite", unique = false, nullable = true)
+
+    @Column(name = "VISITE", unique = false, nullable = false)
     private int visite;
-      
-       @Column(table = "post", name = "id_autore", unique = false, nullable = false)
-    private long IdAutore;
+
+    @Column(name = "VISIBILE", unique = false, nullable = false)
+    private boolean visibile;
 
     public PostEntity() {
     }
 
-    public PostEntity(long ID, long IdCategoria, String titolo, String descrizione, LocalDate data, boolean visibile, int visite, long IdAutore) {
-        this.ID = ID;
-        this.IdCategoria = IdCategoria;
+    public PostEntity(long id, long idCategoria, String titolo, String descrizione, long idAutore, LocalDate data, int visite, boolean visibile) {
+        this.id = id;
+        this.idCategoria = idCategoria;
         this.titolo = titolo;
         this.descrizione = descrizione;
+        this.idAutore = idAutore;
         this.data = data;
-        this.visibile = visibile;
         this.visite = visite;
-        this.IdAutore = IdAutore;
+        this.visibile = visibile;
+    }
+    
+    public PostEntity(long idCategoria, String titolo, String descrizione, long idAutore, LocalDate data, int visite, boolean visibile) {
+        this.idCategoria = idCategoria;
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.idAutore = idAutore;
+        this.data = data;
+        this.visite = visite;
+        this.visibile = visibile;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getIdCategoria() {
-        return IdCategoria;
+        return idCategoria;
     }
 
-    public void setIdCategoria(long IdCategoria) {
-        this.IdCategoria = IdCategoria;
+    public void setIdCategoria(long idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public String getTitolo() {
@@ -104,20 +98,20 @@ public class PostEntity implements Serializable {
         this.descrizione = descrizione;
     }
 
+    public long getIdAutore() {
+        return idAutore;
+    }
+
+    public void setIdAutore(long idAutore) {
+        this.idAutore = idAutore;
+    }
+
     public LocalDate getData() {
         return data;
     }
 
     public void setData(LocalDate data) {
         this.data = data;
-    }
-
-    public boolean isVisibile() {
-        return visibile;
-    }
-
-    public void setVisibile(boolean visibile) {
-        this.visibile = visibile;
     }
 
     public int getVisite() {
@@ -128,16 +122,71 @@ public class PostEntity implements Serializable {
         this.visite = visite;
     }
 
-    public long getIdAutore() {
-        return IdAutore;
+    public boolean isVisibile() {
+        return visibile;
     }
 
-    public void setIdAutore(long IdAutore) {
-        this.IdAutore = IdAutore;
+    public void setVisibile(boolean visibile) {
+        this.visibile = visibile;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 59 * hash + (int) (this.idCategoria ^ (this.idCategoria >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.titolo);
+        hash = 59 * hash + Objects.hashCode(this.descrizione);
+        hash = 59 * hash + (int) (this.idAutore ^ (this.idAutore >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.data);
+        hash = 59 * hash + this.visite;
+        hash = 59 * hash + (this.visibile ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PostEntity other = (PostEntity) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.idCategoria != other.idCategoria) {
+            return false;
+        }
+        if (this.idAutore != other.idAutore) {
+            return false;
+        }
+        if (this.visite != other.visite) {
+            return false;
+        }
+        if (this.visibile != other.visibile) {
+            return false;
+        }
+        if (!Objects.equals(this.titolo, other.titolo)) {
+            return false;
+        }
+        if (!Objects.equals(this.descrizione, other.descrizione)) {
+            return false;
+        }
+        if (!Objects.equals(this.data, other.data)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "PostEntity{" + "id=" + id + ", idCategoria=" + idCategoria + ", titolo=" + titolo + ", descrizione=" + descrizione + ", idAutore=" + idAutore + ", data=" + data + ", visite=" + visite + ", visibile=" + visibile + '}';
     }
 
     
-
-    
-
 }

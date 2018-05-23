@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.forit.blog.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -13,10 +8,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author UTENTE
- */
 public class LocalDateSerializer extends StdSerializer<LocalDate> {
 
     private static final long serialVersionUID = 1L;

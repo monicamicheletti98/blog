@@ -3,12 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.forit</groupId>
-    <artifactId>forit-blog</artifactId>
-    <version>1.0</version>
+    <artifactId>blog</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>blog</name>
-    <properties>
+
+     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -64,6 +65,18 @@
             <version>5.2.2.Final</version>
             <!--<scope>runtime</scope>-->
         </dependency>
+        
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>4.2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>4.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -113,8 +126,24 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+                <version>1.1.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/generated-sources</outputDirectory>
+                            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <finalName>blog</finalName>
     </build>
-
 </project>

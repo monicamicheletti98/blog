@@ -1,30 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.forit.blog.dto;
 
 import java.util.Objects;
 
-/**
- *
- * @author UTENTE
- */
 public class CategoriaDTO {
     private long id;
     private String nome,descrizione,immagine;
+    private boolean visibile;
 
-    public CategoriaDTO(long id, String nome, String descrizione, String immagine) {
+    public CategoriaDTO() {
+    }
+
+    public CategoriaDTO(long id, String nome, String descrizione, String immagine, boolean visibile) {
         this.id = id;
         this.nome = nome;
         this.descrizione = descrizione;
         this.immagine = immagine;
-    }
-  
-    
-
-    public CategoriaDTO() {
+        this.visibile = visibile;
     }
 
     public long getId() {
@@ -59,16 +50,22 @@ public class CategoriaDTO {
         this.immagine = immagine;
     }
 
-  
+    public boolean isVisibile() {
+        return visibile;
+    }
+
+    public void setVisibile(boolean visibile) {
+        this.visibile = visibile;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 53 * hash + Objects.hashCode(this.nome);
-        hash = 53 * hash + Objects.hashCode(this.descrizione);
-        hash = 53 * hash + Objects.hashCode(this.immagine);
-       
+        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.descrizione);
+        hash = 97 * hash + Objects.hashCode(this.immagine);
+        hash = 97 * hash + (this.visibile ? 1 : 0);
         return hash;
     }
 
@@ -87,7 +84,9 @@ public class CategoriaDTO {
         if (this.id != other.id) {
             return false;
         }
-       
+        if (this.visibile != other.visibile) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -102,8 +101,8 @@ public class CategoriaDTO {
 
     @Override
     public String toString() {
-        return "CategoriaDTO{" + "id=" + id + ", nome=" + nome + ", descrizione=" + descrizione + ", immagine=" + immagine + '}';
+        return "CategoriaDTO{" + "id=" + id + ", nome=" + nome + ", descrizione=" + descrizione + ", immagine=" + immagine + ", visibile=" + visibile + '}';
     }
-
+    
     
 }

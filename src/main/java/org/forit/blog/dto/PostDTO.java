@@ -1,38 +1,27 @@
 package org.forit.blog.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.LocalDate;
 import java.util.Objects;
-import org.forit.blog.serializer.LocalDateDeserializer;
-import org.forit.blog.serializer.LocalDateSerializer;
 
 public class PostDTO {
-
-    private long id ;
-    private long IdCategoria; 
-    private String titolo, descrizione;
-
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
+    private long id,idCategoria,idAutore;
+    private String titolo,descrizione;
     private LocalDate data;
-
-    private boolean visibile;
     private int visite;
-    private long IdAutore;
+    private boolean visibile;
 
     public PostDTO() {
     }
 
-    public PostDTO(long id, long IdCategoria, String titolo, String descrizione, LocalDate data, boolean visibile, int visite, long IdAutore) {
+    public PostDTO(long id, long idCategoria, long idAutore, String titolo, String descrizione, LocalDate data, int visite, boolean visibile) {
         this.id = id;
-        this.IdCategoria = IdCategoria;
+        this.idCategoria = idCategoria;
+        this.idAutore = idAutore;
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.data = data;
-        this.visibile = visibile;
         this.visite = visite;
-        this.IdAutore = IdAutore;
+        this.visibile = visibile;
     }
 
     public long getId() {
@@ -44,11 +33,19 @@ public class PostDTO {
     }
 
     public long getIdCategoria() {
-        return IdCategoria;
+        return idCategoria;
     }
 
-    public void setIdCategoria(long IdCategoria) {
-        this.IdCategoria = IdCategoria;
+    public void setIdCategoria(long idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public long getIdAutore() {
+        return idAutore;
+    }
+
+    public void setIdAutore(long idAutore) {
+        this.idAutore = idAutore;
     }
 
     public String getTitolo() {
@@ -75,14 +72,6 @@ public class PostDTO {
         this.data = data;
     }
 
-    public boolean isVisibile() {
-        return visibile;
-    }
-
-    public void setVisibile(boolean visibile) {
-        this.visibile = visibile;
-    }
-
     public int getVisite() {
         return visite;
     }
@@ -91,30 +80,25 @@ public class PostDTO {
         this.visite = visite;
     }
 
-    public long getIdAutore() {
-        return IdAutore;
+    public boolean isVisibile() {
+        return visibile;
     }
 
-    public void setIdAutore(long IdAutore) {
-        this.IdAutore = IdAutore;
-    }
-
-    @Override
-    public String toString() {
-        return "PostDTO{" + "id=" + id + ", IdCategoria=" + IdCategoria + ", titolo=" + titolo + ", descrizione=" + descrizione + ", data=" + data + ", visibile=" + visibile + ", visite=" + visite + ", IdAutore=" + IdAutore + '}';
+    public void setVisibile(boolean visibile) {
+        this.visibile = visibile;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 43 * hash + (int) (this.IdCategoria ^ (this.IdCategoria >>> 32));
-        hash = 43 * hash + Objects.hashCode(this.titolo);
-        hash = 43 * hash + Objects.hashCode(this.descrizione);
-        hash = 43 * hash + Objects.hashCode(this.data);
-        hash = 43 * hash + (this.visibile ? 1 : 0);
-        hash = 43 * hash + this.visite;
-        hash = 43 * hash + (int) (this.IdAutore ^ (this.IdAutore >>> 32));
+        int hash = 3;
+        hash = 31 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 31 * hash + (int) (this.idCategoria ^ (this.idCategoria >>> 32));
+        hash = 31 * hash + (int) (this.idAutore ^ (this.idAutore >>> 32));
+        hash = 31 * hash + Objects.hashCode(this.titolo);
+        hash = 31 * hash + Objects.hashCode(this.descrizione);
+        hash = 31 * hash + Objects.hashCode(this.data);
+        hash = 31 * hash + this.visite;
+        hash = 31 * hash + (this.visibile ? 1 : 0);
         return hash;
     }
 
@@ -133,16 +117,16 @@ public class PostDTO {
         if (this.id != other.id) {
             return false;
         }
-        if (this.IdCategoria != other.IdCategoria) {
+        if (this.idCategoria != other.idCategoria) {
             return false;
         }
-        if (this.visibile != other.visibile) {
+        if (this.idAutore != other.idAutore) {
             return false;
         }
         if (this.visite != other.visite) {
             return false;
         }
-        if (this.IdAutore != other.IdAutore) {
+        if (this.visibile != other.visibile) {
             return false;
         }
         if (!Objects.equals(this.titolo, other.titolo)) {
@@ -155,6 +139,11 @@ public class PostDTO {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "PostDTO{" + "id=" + id + ", idCategoria=" + idCategoria + ", idAutore=" + idAutore + ", titolo=" + titolo + ", descrizione=" + descrizione + ", data=" + data + ", visite=" + visite + ", visibile=" + visibile + '}';
     }
 
     

@@ -1,19 +1,76 @@
-package org.forit.blog.dto;
+package org.forit.blog.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class UserDTO {
-    private long id,idRuolo,numeroTentativi;
-    private String nome,cognome,username,email,password;
-    private boolean attivo,bloccato;
-    private LocalDate dataIscrizione,dataUltimoAccesso;
+@Entity
+@Table(name="account")
+public class AccountEntity implements Serializable {
 
-    public UserDTO() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID",nullable = false,unique=false)
+    private long id;
+    
+    @Column(name = "ID_RUOLO",nullable = false,unique=false)
+    private long idRuolo;
+    
+    @Column(name = "NUMERO_TENTATIVI",nullable = false,unique=false)
+    private long numeroTentativi;
+    
+    @Column(name = "NOME",nullable = false,unique=false)
+    private String nome;
+    
+    @Column(name = "COGNOME",nullable = false,unique=false)
+    private String cognome;
+    
+    @Column(name = "USERNAME",nullable = false,unique=false)
+    private String username;
+    
+    @Column(name = "EMAIL",nullable = false,unique=false)
+    private String email;
+    
+    @Column(name = "PASSWORD",nullable = false,unique=false)
+    private String password;
+    
+    @Column(name = "ATTIVO",nullable = false,unique=false)
+    private boolean attivo;
+    
+    @Column(name = "BLOCCATO",nullable = false,unique=false)
+    private boolean bloccato;
+    
+    @Column(name = "DATA_REGISTRAZIONE",nullable = false,unique=false)
+    private LocalDate dataIscrizione;
+    
+    @Column(name = "DATA_ULTIMO_ACCESSO",nullable = false,unique=false)
+    private LocalDate dataUltimoAccesso;
+
+    public AccountEntity() {
     }
 
-    public UserDTO(long id, long idRuolo, long numeroTentativi, String nome, String cognome, String username, String email, String password, boolean attivo, boolean bloccato, LocalDate dataIscrizione, LocalDate dataUltimoAccesso) {
+    public AccountEntity(long id, long idRuolo, long numeroTentativi, String nome, String cognome, String username, String email, String password, boolean attivo, boolean bloccato, LocalDate dataIscrizione, LocalDate dataUltimoAccesso) {
         this.id = id;
+        this.idRuolo = idRuolo;
+        this.numeroTentativi = numeroTentativi;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.attivo = attivo;
+        this.bloccato = bloccato;
+        this.dataIscrizione = dataIscrizione;
+        this.dataUltimoAccesso = dataUltimoAccesso;
+    }
+    
+    public AccountEntity(long idRuolo, long numeroTentativi, String nome, String cognome, String username, String email, String password, boolean attivo, boolean bloccato, LocalDate dataIscrizione, LocalDate dataUltimoAccesso) {
         this.idRuolo = idRuolo;
         this.numeroTentativi = numeroTentativi;
         this.nome = nome;
@@ -125,7 +182,7 @@ public class UserDTO {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
         hash = 53 * hash + (int) (this.idRuolo ^ (this.idRuolo >>> 32));
         hash = 53 * hash + (int) (this.numeroTentativi ^ (this.numeroTentativi >>> 32));
@@ -152,7 +209,7 @@ public class UserDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final UserDTO other = (UserDTO) obj;
+        final AccountEntity other = (AccountEntity) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -194,6 +251,6 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "AccountDTO{" + "id=" + id + ", idRuolo=" + idRuolo + ", numeroTentativi=" + numeroTentativi + ", nome=" + nome + ", cognome=" + cognome + ", username=" + username + ", email=" + email + ", password=" + password + ", attivo=" + attivo + ", bloccato=" + bloccato + ", dataIscrizione=" + dataIscrizione + ", dataUltimoAccesso=" + dataUltimoAccesso + '}';
+        return "AccountEntity{" + "id=" + id + ", idRuolo=" + idRuolo + ", numeroTentativi=" + numeroTentativi + ", nome=" + nome + ", cognome=" + cognome + ", username=" + username + ", email=" + email + ", password=" + password + ", attivo=" + attivo + ", bloccato=" + bloccato + ", dataIscrizione=" + dataIscrizione + ", dataUltimoAccesso=" + dataUltimoAccesso + '}';
     }
 }

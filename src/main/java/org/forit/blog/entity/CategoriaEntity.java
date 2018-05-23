@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.forit.blog.entity;
 
 import java.io.Serializable;
@@ -12,56 +7,53 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author UTENTE
- */
 @Entity
 @Table(name = "categoria")
-@NamedQueries({
-    @NamedQuery(
-            name = "categoria.selectAll",
-            query = "SELECT c FROM CategoriaEntity c ORDER BY c.nome"
-    )
-})
 public class CategoriaEntity implements Serializable {
 
     @Id
+    @Column(name = "ID", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    private long ID ;
+    private long id;
 
-    @Column(table = "categoria",name = "NOME", unique = false, nullable = true)
+    @Column(name = "nome", nullable = false, unique = true)
     private String nome;
-    
-@Column(table = "categoria",name = "DESCRIZIONE", unique = false, nullable = true)
+
+    @Column(name = "descrizione", nullable = false, unique = true)
     private String descrizione;
 
-@Column(table = "categoria",name = "IMMAGINE", unique = false, nullable = true)
+    @Column(name = "immagine", nullable = false, unique = true)
     private String immagine;
 
+    @Column(name = "visibile", nullable = false, unique = true)
+    private boolean visibile;
 
     public CategoriaEntity() {
     }
 
-    public CategoriaEntity(long ID, String nome, String descrizione, String immagine, boolean visibile) {
-        this.ID = ID;
+    public CategoriaEntity(long id, String nome, String descrizione, String immagine, boolean visibile) {
+        this.id = id;
         this.nome = nome;
         this.descrizione = descrizione;
         this.immagine = immagine;
-      
+        this.visibile = visibile;
+    }
+    
+    public CategoriaEntity(String nome, String descrizione, String immagine, boolean visibile) {
+        this.nome = nome;
+        this.descrizione = descrizione;
+        this.immagine = immagine;
+        this.visibile = visibile;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -88,15 +80,22 @@ public class CategoriaEntity implements Serializable {
         this.immagine = immagine;
     }
 
-   
+    public boolean isVisibile() {
+        return visibile;
+    }
+
+    public void setVisibile(boolean visibile) {
+        this.visibile = visibile;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + (int) (this.ID ^ (this.ID >>> 32));
-        hash = 53 * hash + Objects.hashCode(this.nome);
-        hash = 53 * hash + Objects.hashCode(this.descrizione);
-        hash = 53 * hash + Objects.hashCode(this.immagine);
-      
+        int hash = 3;
+        hash = 11 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 11 * hash + Objects.hashCode(this.nome);
+        hash = 11 * hash + Objects.hashCode(this.descrizione);
+        hash = 11 * hash + Objects.hashCode(this.immagine);
+        hash = 11 * hash + (this.visibile ? 1 : 0);
         return hash;
     }
 
@@ -112,11 +111,12 @@ public class CategoriaEntity implements Serializable {
             return false;
         }
         final CategoriaEntity other = (CategoriaEntity) obj;
-        if (this.ID != other.ID) {
+        if (this.id != other.id) {
             return false;
         }
-       
-        
+        if (this.visibile != other.visibile) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -131,12 +131,7 @@ public class CategoriaEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "CategoriaEntity{" + "ID=" + ID + ", nome=" + nome + ", descrizione=" + descrizione + ", immagine=" + immagine + '}';
+        return "CategoriaEntity{" + "id=" + id + ", nome=" + nome + ", descrizione=" + descrizione + ", immagine=" + immagine + ", visibile=" + visibile + '}';
     }
 
-
-
-
 }
-
-  

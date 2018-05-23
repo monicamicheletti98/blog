@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.forit.blog.rest;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,75 +8,50 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-import org.forit.blog.dao.tagDAO;
-import org.forit.blog.dto.tagDTO;
-import org.forit.blog.exception.TagException;
+import org.forit.blog.dao.TagDAO;
+import org.forit.blog.dto.TagDTO;
 
-/**
- *
- * @author UTENTE
- */
-@Path("/tag")
-public class TagRest implements Serializable{
-
+@Path("/tags")
+public class TagRest {
+    
     @Path("/")
     @GET()
     @Produces("application/json")
-    public List<tagDTO> getTag() {
-        tagDAO TagDAO = new tagDAO();
-        return TagDAO.getTagsList();
+    public List<TagDTO> getTags(){
+        TagDAO manager=new TagDAO();
+        return manager.getTags();
     }
-
+    
     @Path("/{id}")
-    @GET()
+    @GET
     @Produces("application/json")
-    public String getTag(@PathParam("id") long ID) {       
-        tagDAO TagDAO = new tagDAO();
-        return TagDAO.getTag(ID);
+    public TagDTO getTag(@PathParam(value = "id") long id){
+        TagDAO manager=new TagDAO();
+        return manager.getTag(id);
     }
-
+    
+    @Path("/")
+    @POST
+    @Produces("application/json")
+    public boolean insertTag(TagDTO tag){
+        TagDAO manager=new TagDAO();
+        return manager.insertTag(-1,tag);
+    }
+    
     @Path("/{id}")
-    @DELETE()
+    @PUT
     @Produces("application/json")
-    public boolean deleteTag(@PathParam("id") long ID) throws WebApplicationException {
-        try {
-            tagDAO TagDAO = new tagDAO();
-            TagDAO.deleteTag(ID);
-            return true;
-        } catch (TagException ex) {
-            System.out.println("Si è verificato un errore " + ex.getMessage());
-            throw new WebApplicationException(ex, Response.Status.CONFLICT);
-        }
-
+    public boolean updateTag(@PathParam(value = "id") long id,TagDTO tag){
+        TagDAO manager=new TagDAO();
+        return manager.insertTag(id, tag);
     }
-
-    @PUT()
-    @Consumes("application/json")
+    
+    @Path("/{id}")
+    @DELETE
     @Produces("application/json")
-    @Path("/")
-    public boolean putTag(tagDTO tag) {
-        try {
-            tagDAO tagDAO = new tagDAO();
-            tagDAO.updateTag(tag.getId(), tag.getNome());
-            return true;
-        } catch (TagException ex) {
-            return false;
-        }
+    public boolean deleteTag(@PathParam(value = "id") long id){
+        TagDAO manager=new TagDAO();
+        return manager.deleteTag(id);
     }
-
-    @Path("/")
-    @POST()
-    @Consumes("application/json")
-    @Produces("application/json")
-    public boolean postTag(tagDTO tag) {
-        try {
-            tagDAO TagDAO = new tagDAO();
-            TagDAO.insertTag(tag.getNome());
-            return true;
-        } catch (TagException ex) {
-            return false;
-        }
-    }
+    
 }

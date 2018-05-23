@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.forit.blog.entity;
 
 import java.io.Serializable;
@@ -16,42 +11,38 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author UTENTE
- */
 @Entity
 @Table(name = "tag")
-@NamedQueries({
-    @NamedQuery(
-            name = "tag.selectAll",
-            query = "SELECT n FROM TagEntity n ORDER BY n.nome"
-    )
-})
 public class TagEntity implements Serializable {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    private long ID = -1;
-
-    @Column(name = "NOME", unique = false, nullable = true)
+    @Column(name = "id",unique = true,nullable=false)
+    private long id;
+    
+    @Column(name = "nome",unique=false,nullable = false)
     private String nome;
+    
+    
 
     public TagEntity() {
     }
 
-    public TagEntity(long ID, String nome) {
-        this.ID = ID;
+    public TagEntity(long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+    
+    public TagEntity(String nome) {
         this.nome = nome;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -65,8 +56,8 @@ public class TagEntity implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + (int) (this.ID ^ (this.ID >>> 32));
-        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 11 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 11 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -82,7 +73,7 @@ public class TagEntity implements Serializable {
             return false;
         }
         final TagEntity other = (TagEntity) obj;
-        if (this.ID != other.ID) {
+        if (this.id != other.id) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
@@ -93,6 +84,6 @@ public class TagEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "NazioneEntity{" + "ID=" + ID + ", nome=" + nome + '}';
+        return "TagEntity{" + "id=" + id + ", nome=" + nome + '}';
     }
 }
